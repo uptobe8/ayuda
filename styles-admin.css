@@ -1,0 +1,41 @@
+#view-necesidades .admin-hero{background:var(--orange-soft);border-color:#edc18e;border-left:7px solid var(--orange)}
+#view-necesidades .admin-label{color:var(--orange-dark)}
+#view-tareas .admin-hero{background:var(--violet-soft);border-color:#cdbde7;border-left:7px solid var(--violet)}
+#view-tareas .admin-label{color:var(--violet-dark)}
+#view-resumen .admin-hero{background:var(--cyan-soft);border-color:#a6dadd;border-left:7px solid var(--cyan)}
+#view-resumen .admin-label{color:var(--cyan-dark)}
+.need-row.is-urgent{background:linear-gradient(90deg,var(--red-soft),#fff 30%);border-color:#e9aaa6;border-left:8px solid var(--red)}
+.need-row.is-needed{background:linear-gradient(90deg,var(--amber-soft),#fff 30%);border-color:#edc895;border-left:8px solid var(--amber)}
+.need-row:not(.is-urgent):not(.is-needed){background:#f8faf9}
+.metric-cell:nth-of-type(1){background:var(--blue-soft);border:1px solid #c7def1}.metric-cell:nth-of-type(1) strong{color:var(--blue-dark)}
+.metric-cell:nth-of-type(2){background:var(--green-soft);border:1px solid #c6e0d0}.metric-cell:nth-of-type(2) strong{color:var(--green-dark)}
+.metric-cell:nth-of-type(3){background:var(--orange-soft);border:1px solid #efd1aa}.metric-cell:nth-of-type(3) strong{color:var(--orange-dark)}
+.task-card{border-top:6px solid var(--violet);background:linear-gradient(180deg,#faf8fe,#fff 33%)}
+.task-count{background:var(--violet-soft)}.task-count strong,.task-count span{color:var(--violet-dark)}
+.summary-card:nth-child(1){border-top:6px solid var(--blue);background:var(--blue-soft)}
+.summary-card:nth-child(2){border-top:6px solid var(--green);background:var(--green-soft)}
+.summary-card:nth-child(3){border-top:6px solid var(--violet);background:var(--violet-soft)}
+.summary-card:nth-child(4){border-top:6px solid var(--orange);background:var(--orange-soft)}
+.summary-card:nth-child(5){border-top:6px solid var(--cyan);background:var(--cyan-soft)}
+@media(max-width:560px){
+  .help-choices{grid-template-columns:1fr}
+  .help-choice{min-height:76px;display:grid;grid-template-columns:42px 1fr;align-items:center;justify-content:start;gap:12px}
+  .help-choice strong{font-size:14px}
+  .signup-flow>.flow-card:nth-of-type(1) .flow-head h3:after,.signup-flow>.flow-card:nth-of-type(2) .flow-head h3:after,.signup-flow>.flow-card:nth-of-type(3) .flow-head h3:after{display:block;margin-top:3px}
+}
+.metric-cell.metric-committed{background:var(--blue-soft);border:1px solid #c7def1}.metric-cell.metric-committed strong{color:var(--blue-dark)}
+.metric-cell.metric-delivered{background:var(--green-soft);border:1px solid #c6e0d0}.metric-cell.metric-delivered strong{color:var(--green-dark)}
+.metric-cell.metric-pending{background:var(--orange-soft);border:1px solid #efd1aa}.metric-cell.metric-pending strong{color:var(--orange-dark)}
+.task-card.status-en-curso{border-top-color:var(--orange);background:linear-gradient(180deg,var(--orange-soft),#fff 33%)}
+.task-card.status-completada{border-top-color:var(--green);background:linear-gradient(180deg,var(--green-soft),#fff 33%)}
+.task-card.status-cancelada{border-top-color:var(--red);background:linear-gradient(180deg,var(--red-soft),#fff 33%)}
+.backend-status{display:inline-flex;align-items:center;gap:7px;margin:0 0 14px;font-size:12px;font-weight:800;color:#5c6a63}
+.backend-status:before{content:"";width:8px;height:8px;border-radius:50%;background:#aeb9b3}
+.backend-status.online{color:var(--green-dark)}.backend-status.online:before{background:#23a05d;box-shadow:0 0 0 4px rgba(35,160,93,.12)}
+.backend-status.offline{color:var(--red)}.backend-status.offline:before{background:var(--red)}
+.central-record-note{margin-top:22px;border:1px solid #b9d8f1;border-left:6px solid var(--blue);background:var(--blue-soft);border-radius:14px;padding:14px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.central-record-note strong{color:var(--blue-dark)}.central-record-note span{font-size:13px;color:#53655b}
+.hp-field{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+.save-msg.error{color:#ffd5d2!important}
+.primary:disabled,.secondary:disabled{opacity:.55;cursor:not-allowed}
+.tab.locked.unlocked .lock{display:none}.tab.locked.unlocked .tab-dot{background:currentColor}
