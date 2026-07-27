@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Coordinación de ayuda</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand-lockup">
+    <div class="brand-mark" aria-hidden="true">+</div>
+    <div>
+      <div class="eyebrow">COORDINACIÓN DE AYUDA</div>
+      <h1>Incendios · Madrid y Ávila</h1>
+    </div>
+  </div>
+  <button id="adminBtn" class="secondary topbar-action">Administración</button>
+</header>
+
+<main class="app-shell">
+  <nav class="tabs" aria-label="Secciones">
+    <button class="tab active" data-view="apuntate"><span class="tab-step">1</span> Apúntate</button>
+    <button class="tab locked" data-view="necesidades"><span class="tab-dot"></span> Necesidades <span class="lock">🔒</span></button>
+    <button class="tab locked" data-view="tareas"><span class="tab-dot"></span> Tareas <span class="lock">🔒</span></button>
+    <button class="tab locked" data-view="resumen"><span class="tab-dot"></span> Resumen <span class="lock">🔒</span></button>
+  </nav>
+
+  <section id="view-apuntate" class="view active">
+    <div class="hero-panel">
+      <div>
+        <span class="status-pill"><span></span> Coordinación activa</span>
+        <div id="backendStatus" class="backend-status">Comprobando registro central…</div>
+        <h2>Ayudar debería llevar menos de un minuto.</h2>
+        <p>Elige qué puedes hacer y deja solo los datos necesarios para que podamos coordinarte.</p>
+      </div>
+      <div class="hero-kpis" id="publicKpis">
+        <div><strong id="kpiPeople">0</strong><span>personas</span></div>
+        <div><strong id="kpiTransport">0</strong><span>con transporte</span></div>
+      </div>
+    </div>
+
+    <form id="signupForm" class="signup-flow" novalidate>
+      <input class="hp-field" id="website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <section class="flow-card flow-card-accent">
+        <div class="flow-head">
+          <span class="flow-number">1</span>
+          <div><h3>¿Cómo puedes ayudar?</h3><p>Selecciona una opción. Luego te pediremos solo lo necesario.</p></div>
+        </div>
+        <input type="hidden" id="participationType" value="">
+        <div id="helpChoices" class="help-choices"></div>
+        <div id="participationError" class="field-error" role="alert"></div>
+      </section>
+
+      <section class="flow-card" id="taskSection">
+        <div class="flow-head">
+          <span class="flow-number">2</span>
+          <div><h3>Concreta tu ayuda</h3><p>Qué aportas, dónde estás y cuándo estás disponible.</p></div>
+        </div>
+        <div class="form-grid compact-grid">
+          <label class="span-2">Tarea o aportación
+            <select required id="needOrTask"><option value="">Selecciona primero cómo puedes ayudar</option></select>
+          </label>
+          <label>Población
+            <select required id="location"><option value="">Selecciona tu población</option></select>
+          </label>
+          <label>Disponibilidad
+            <select required id="availability"><option value="">Selecciona disponibilidad</option></select>
+          </label>
+        </div>
+      </section>
+
+      <section class="flow-card">
+        <div class="flow-head">
+          <span class="flow-number">3</span>
+          <div><h3>Datos de contacto</h3><p>Para que coordinación pueda localizarte.</p></div>
+        </div>
+        <div class="form-grid compact-grid">
+          <label>Nombre y apellidos<input required id="name" type="text" autocomplete="name" placeholder="Tu nombre"></label>
+          <label>Teléfono<input required id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Tu teléfono"></label>
+        </div>
+
+        <details class="optional-panel" id="moreDetails">
+          <summary><span>+ Añadir detalles útiles</span><small>Cantidad, vehículo, destino, observaciones…</small></summary>
+          <div class="form-grid optional-grid">
+            <label>Cantidad<input id="quantity" type="number" min="0" step="0.01" placeholder="Ej. 10"></label>
+            <label>Unidad<select id="unit"><option value="">Selecciona unidad</option></select></label>
+            <label>Vehículo<select id="vehicle"><option value="">Selecciona vehículo</option></select></label>
+            <label>¿Puedes transportar?<select id="canTransport"><option value="">Selecciona Sí o No</option></select></label>
+            <label class="span-2">Punto de entrega / destino<input id="destination" type="text" placeholder="Solo si lo conoces"></label>
+            <label class="span-2">Observaciones<textarea id="notes" rows="3" placeholder="Cualquier dato que ayude a coordinar mejor"></textarea></label>
+          </div>
+        </details>
+      </section>
+
+      <div class="submit-bar">
+        <div><strong>Último paso</strong><span>Comprueba tus datos y pulsa el botón verde.</span></div>
+        <button type="submit" class="primary primary-large">Apuntarme para ayudar</button>
+        <span id="saveMsg" class="save-msg" role="status"></span>
+      </div>
+    </form>
+
+    <section class="central-record-note">
+      <strong>Registro centralizado</strong>
+      <span>Las inscripciones se guardan en la base de datos de coordinación y no quedan expuestas públicamente.</span>
+    </section>
+  </section>
+
+  <section id="view-necesidades" class="view">
+    <div class="admin-hero">
+      <div><span class="admin-label">CONTROL DE SUMINISTROS</span><h2>Necesidades</h2><p>Prioriza lo urgente y comprueba de un vistazo qué falta.</p></div>
+      <button id="exportBtn" class="secondary">Exportar datos</button>
+    </div>
+    <div id="needsList" class="needs-list"></div>
+  </section>
+
+  <section id="view-tareas" class="view">
+    <div class="admin-hero">
+      <div><span class="admin-label">OPERATIVA</span><h2>Tareas</h2><p>Asigna zonas, plazas y estado sin abrir fichas complejas.</p></div>
+    </div>
+    <div id="tasksList" class="tasks-grid"></div>
+  </section>
+
+  <section id="view-resumen" class="view">
+    <div class="admin-hero">
+      <div><span class="admin-label">SITUACIÓN GENERAL</span><h2>Resumen</h2><p>Los indicadores esenciales para tomar decisiones rápidas.</p></div>
+    </div>
+    <div id="summaryCards" class="summary-grid"></div>
+  </section>
+</main>
+
+<dialog id="adminDialog">
+  <form method="dialog" class="dialog-card">
+    <div class="dialog-icon">🔒</div>
+    <h3>Acceso de administración</h3>
+    <p>Introduce la contraseña para desbloquear coordinación, necesidades y tareas.</p>
+    <input id="adminPassword" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <div class="dialog-actions"><button value="cancel" class="secondary">Cancelar</button><button value="default" id="unlockBtn" class="primary">Desbloquear</button></div>
+    <small id="adminError"></small>
+  </form>
+</dialog>
+<script src="app.js"></script>
+</body>
+</html>
